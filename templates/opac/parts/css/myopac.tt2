@@ -1,0 +1,9 @@
+
+myopac = {
+	title = [% l("Title / Author") %],
+
+        table#acct_checked_main_header td:nth-of-type(2):before { content: [% l("Title / Author") %];}
+        table#acct_checked_main_header td:nth-of-type(3):before { content: [% l("Renewals Left") %]; }
+        table#acct_checked_main_header td:nth-of-type(4):before { content: [% l("Due Date") %]; }
+        table#acct_checked_main_header td:nth-of-type(5):before { content: [% l("Barcode") %]; }
+        table#acct_checked_main_header td:nth-of-type(6):before { content: [% l("Call number") %]; }

@@ -1,0 +1,4 @@
+<div id="homesearch_main_logo">
+    <img src="[% ctx.media_prefix %]/opac/images/main_logo.png" 
+        [% img_alt(l('Evergreen Logo')) %]/>
+</div>
