@@ -46,7 +46,7 @@ a {
     border:1px solid [% css_colors.border_standard %];
     margin:0;
     padding:0;
-    width: 12em;
+    width: 11em;
 }
 
 .searchbar {
