@@ -23,7 +23,15 @@
         [% INCLUDE 'opac/parts/goog_analytics.tt2' %]
         [% PROCESS 'opac/parts/stripe.tt2' %]
     </head>
-    <body[% IF want_dojo; ' class="tundra"'; END %]>
+
+<script language='javascript'>
+        if (window.location.hash.match(/#/))
+		document.writeln('<body>');
+	  else
+		document.writeln('<body class="tundra"; onload="document.getElementById(\'search_box\').focus();">');
+	
+</script>
+
         <h1 class="sr-only">[% l('Catalog') %]</h1>
         [%#Each content page needs (at minimum) an <h2> describing the content%]
         [% content %] 
