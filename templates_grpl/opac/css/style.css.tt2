@@ -28,6 +28,8 @@ img {
     padding-bottom: 25px;
 }
 
+#my_account { display:none; }
+
 #homesearch_main_logo {
     padding-top: 5px;
     padding-left: 130px;
@@ -1686,7 +1688,7 @@ a.preflib_change {
 }
 
 @media only screen and (max-width: 800px) {
-    .facet_sidebar_hidden, .result_block_hidden {
+    .facet_sidebar, .result_block_hidden {
         display: none;
     }
     .facet_sidebar_visible, .result_block_visible {
@@ -1695,9 +1697,16 @@ a.preflib_change {
     #acct_select, #acct_prefs_select {
         display: inline-block;
     }
-#acct_tabs, #acct_prefs_tabs {
-         display:none;
-     }
+    #acct_tabs, #acct_prefs_tabs {
+        display:none;
+    }
+    #homesearch_main_logo { display: none; }
+    #footer-branches { display: none; }
+    #extra_links { float: left;} 
+    .searchbar { font-size: 140%;}
+    #logo img { height: 50px; position: absolute; top: 0px;}
+    #my_account { display: block; margin-left: 280px;}
+    #my_account a { color: white; }
 }
 
 @media only screen and (max-width: 600px) {
@@ -1725,6 +1734,8 @@ a.preflib_change {
         margin: 0px;
         padding: 5px;
     }
+    #login-form-box { width: 300px; }
+    .login-help-box { display: none; }
     #topnav_logo {
         margin: 0;
     }
@@ -1783,6 +1794,9 @@ a.preflib_change {
     }
     .results_header_lbl {
         display: none;
+    }
+    .results_header_bar {
+	display: none;
     }
     .results_header_nav1 span.h1 {
         display: none;

@@ -155,6 +155,12 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover  {text-de
 
 /* 2.2 Navigation */
 
+@media only screen and (max-width: 600px) {
+
+#navigation {display: none;}
+
+}
+
 #navigation ul.rss{background:url(images/ico-rss.png) no-repeat right 5px;padding:0 25px 0 0;margin-right:10px;}
 #navigation ul.rss li{display:inline;padding:0; line-height: 28px;}
 #navigation ul.rss li a{color:#c63f00;text-decoration:none;}

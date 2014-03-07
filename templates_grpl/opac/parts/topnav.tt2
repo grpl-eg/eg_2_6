@@ -84,7 +84,7 @@ h1, h2, h3, h4, h5, h6, .post .title, #slide-nav li a span.info .title, .widget 
 <div id="wrapper">	
 <div style="width: 1000px;">
 	<div id="header" class="col-full">
-
+		<div id="my_account"><a href='/eg/opac/myopac/main' class='opac-button'>My Account</a></div>
 		<div id="logo" class="col-left">
 
 					<a href="http://www.grpl.org" title="">
@@ -95,7 +95,6 @@ h1, h2, h3, h4, h5, h6, .post .title, #slide-nav li a span.info .title, .widget 
         			<span class="site-description"></span>
 
 		</div><!-- /#logo -->
-
 		<div id="navigation" class="col-right">
 
 			<ul id="main-nav" class="nav fl"><li id="menu-item-20" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20"><a href="http://www.grpl.org/about/"><br/>About</a>
