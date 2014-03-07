@@ -262,8 +262,8 @@ for now until a better color is picked - if needed.
 }
 
 #adv_search_tabs, #acct_tabs, #acct_fines_tabs, #acct_checked_tabs, #acct_holds_tabs, #acct_prefs_tabs, #results_header_inner{
-    margin-left: 2px;
     overflow: auto;
+    background: #bbb;
 }
 
 #adv_search_tabs a, #acct_tabs a, #acct_fines_tabs a, #acct_checked_tabs a, #acct_holds_tabs a, #acct_prefs_tabs a {
@@ -1025,13 +1025,14 @@ div.adv_search_available {
 .facetFieldLineValue { overflow: hidden; text-overflow: ellipsis; }
 [%- END -%]
 
-div#facet_sidebar {
+.facet_sidebar {
     float: left;
     margin-right: 1em;
 }
 
 .facet_box_temp {
     padding-bottom:3px;
+    width: 15em;
 }
 
 .facet_box_temp .header {
@@ -1054,8 +1055,7 @@ div#facet_sidebar {
 
 .facet_box_temp .header a.button {
     float:right;
-    padding-top:6px;
-    padding-right:6px;
+    padding: 0 2px 2px 2px;
     color:[% css_colors.text_invert %];
 }
 
@@ -1064,7 +1064,8 @@ div#facet_sidebar {
     border-left:1px solid [% css_colors.border_standard %];
     border-right:1px solid [% css_colors.border_standard %];
     padding: 0 0.5em;
-    width: 14em;
+    width: 14.5em;
+    padding: 0 2px 2px 2px;
     overflow: hidden;
 }
 
