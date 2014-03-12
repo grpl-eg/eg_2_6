@@ -85,6 +85,7 @@ h1, h2, h3, h4, h5, h6, .post .title, #slide-nav li a span.info .title, .widget 
 <div style="width: 1000px;">
 	<div id="header" class="col-full">
 		<div id="my_account"><a href='/eg/opac/myopac/main' class='opac-button'>My Account</a></div>
+	        <div id="mobile_search"><a href='/' class='opac-button'>New Search</a></div>
 		<div id="logo" class="col-left">
 
 					<a href="http://www.grpl.org" title="">

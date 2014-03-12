@@ -21,10 +21,10 @@
 <div id="footer-out">
 		
 		
-		<div id="footer" style="width: 1000px; margin: auto;" class="col-full">
+		<div id="footer" style="margin: auto;" class="col-full">
 			
 			<div id="copyright" class="col-left">
-							<p><span>Grand Rapids Public Library</span> Copyright &copy; 2014. All Rights Reserved.</p>
+							<p><span>Grand Rapids Public Library</span> <br>Copyright &copy; 2014. All Rights Reserved.</p>
 						</div>
 			
 			<div id="credit" class="col-right">

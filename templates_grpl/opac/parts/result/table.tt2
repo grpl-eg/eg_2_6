@@ -31,15 +31,15 @@
                 [% INCLUDE 'opac/parts/result/facets.tt2' %]
             </div>
             <div class="result_block">
-                <table cellpadding="0" cellspacing="0"
+                <table cellpadding="0" cellspacing="0" id="result_table_table"
                     style="margin-top:10px;">
                     <tbody id="result_table">
                     [%  FOR rec IN ctx.records;
                             attrs = {marc_xml => rec.marc_xml};
                             PROCESS get_marc_attrs args=attrs;
-                            IF CGI.param('detail_record_view');
-                                attrs.title = attrs.title_extended;
-                            END;
+                            #IF CGI.param('detail_record_view');
+                            #    attrs.title = attrs.title_extended;
+                            #END;
                     -%]
                         <tr class="result_table_row">
 
@@ -62,20 +62,26 @@
                                             <td id='row_num' style='font-weight:bold;padding-right:4px;'>[%
                                                     result_count; result_count = result_count + 1
                                                 %].</td>
-                                            <td id='book_jacket' style='width: 65px;'>
+                                            <td id='book_jacket' class='result_table_pic'>
                                                 [% ident = attrs.isbn_clean || attrs.upc; IF ident; %]
                                                 <a href="[% mkurl(ctx.opac_root _ '/record/' _ rec.id) %]"><img alt="[% l('Image of item') %]"
                                                         name='item_jacket' class='result_table_pic' height='95' width='60' 
                                                         src='[% ctx.media_prefix %]/opac/extras/ac/jacket/small/[% ident | uri %]' /></a><br />
                                                 [% END %]
                                             </td>
-                                            <td id="title_box" style="width: 600px" >
-                                                <div class="bold">
+                                            <td id="title_box" class='result_metadata' >
+                                                <div class="bold long_title" >
                                                     <a name='record_[% rec.id %]' name='item_title'
+                                                        href="[% mkurl(ctx.opac_root _ '/record/' _ rec.id) %]"
+                                                        [% HTML.attributes(title => l('Display record details for "[_1]"', attrs.title_extended)) %]
+                                                        class='search_link'>[% attrs.title_extended | html %]</a>
+                                                </div>
+						<div class="bold mobile_title">
+						    <a name='record_[% rec.id %]' name='item_title'
                                                         href="[% mkurl(ctx.opac_root _ '/record/' _ rec.id) %]"
                                                         [% HTML.attributes(title => l('Display record details for "[_1]"', attrs.title)) %]
                                                         class='search_link'>[% attrs.title | html %]</a>
-                                                </div>
+						</div>
                                                     <div>
                                                         <em><a title="[% l("Perform an Author Search") %]"
                                                                 name='item_author'
@@ -217,7 +223,8 @@
 					</tr></table>	
 [% PROCESS "opac/parts/result/copy_counts.tt2" %]
 </td>
-<td id='format_icon' width=40>
+<td id='result_table_utils'>
+<div id='format_icon'>
 
                                                 [% IF attrs.format_icon %]
                                                 <img title="[% attrs.format_label | html %]" alt="[% attrs.format_label | html %]" src="[% attrs.format_icon %]" />
@@ -226,14 +233,13 @@
                                                 <!-- unAPI link -->
                                                 <abbr class="unapi-id" title='tag:[% ctx.hostname %],[% date.format(date.now, '%Y') %]:biblio-record_entry/[% rec.id %]'></abbr>
 
-</td>
+</div>
 <td id='result_table_utils'>
     <table><tr align=right>
                                             <td nowrap='nowrap'>
-                                                <div class="">
                                                     <div class="">
 [% IF !bookKit AND !eReader %]
-                                                        <div class=""><a
+                                                        <div class="result_aux"><a
                                                                 href="[% mkurl(ctx.opac_root _ '/place_hold',
                                                                     {hold_target => rec.id, hold_type => 'T', hold_source_page => mkurl()}) %]"
                                                                     name="place_hold_link" class="no-dec"><img class='hide_me'
@@ -241,8 +247,7 @@
                                                                 alt=""/><span class="">[% l(' Place Hold') %]</span></a>
                                                         </div>
 [% END %]
-                                                        <div class="">
-							 <br/>
+                                                        <div class="result_aux">
                                                             [%  IF ctx.user;
                                                                 dsetting = "opac.default_list";
                                                                 tclass = (ctx.user_setting_map.$dsetting) ? "temporary" :
@@ -315,16 +320,15 @@
                                                                 [% label %]
                                                             </a>
                                                             [% END %]
-                                                        </div>
+                                                        </div> <!-- end result_aux -->
                                                     </div>
-                                                </div>
                                             </td>
                                         </tr>
     </table>
 </table>
 </td></tr>
 <tr><td style='padding-left:20px;padding-bottom:15px;'>
-<table style='width:600px;'>
+<table style='width:600px;' class='mobile_hide'>
                                                             <tr name='bib_cn_list'  rowspan=3 >
                                                                 <td colspan='2'>
                                                                     <table width=100%>

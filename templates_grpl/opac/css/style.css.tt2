@@ -29,6 +29,8 @@ img {
 }
 
 #my_account { display:none; }
+#mobile_search { display:none; }
+.mobile_title { display: none; }
 
 #homesearch_main_logo {
     padding-top: 5px;
@@ -713,12 +715,17 @@ collapse correctly when the window width decreases */
   border-collapse: collapse;
 }
 
-#result_table_table {
-  margin-top:10px;
+#result_table_table table {
+  margin-top:5px;
 }
 
 #result_table_div {
     margin-top: 1em;
+}
+
+#title_box {
+    width: 520px;
+    padding-top: 5px;
 }
 
 tr.result_table_row > td.results_row_count,
@@ -757,9 +764,10 @@ tr.result_table_row > td.result_table_pic_header {
     padding-top: 1em;
 }
 
-div.result_table_utils_cont {
+#result_table_utils {
     text-align:left;
     float: left;
+    line-height: 2.2em;
 }
 
 .icon_text {
@@ -1702,14 +1710,38 @@ a.preflib_change {
     }
     #homesearch_main_logo { display: none; }
     #footer-branches { display: none; }
+    #footer { width: 350px; }
     #extra_links { float: left;} 
-    .searchbar { font-size: 140%;}
+    .searchbar { font-size: 150%;}
     #logo img { height: 50px; position: absolute; top: 0px;}
     #my_account { display: block; margin-left: 280px;}
     #my_account a { color: white; }
+    #mobile_search { display: block; margin-left: 280px; }
+    #mobile_search a { color: white; }
 }
 
 @media only screen and (max-width: 600px) {
+
+    body { width: 500px;}
+
+    #title_box {
+    	width: 320px;
+    	padding-top: 5px;
+    }
+    #wrapper {
+	width: 500px;
+    }
+    #content-wrapper { 
+	width: 500px;
+    }
+    .mobile_hide { display: none; }
+    #footer { width: 420px; }
+    #result_table_utils { position: absolute; margin-top: 84px; }
+    .result_aux { display: inline; padding: 5px; margin-left: 20px; }
+    
+    .mobile_title { display: block; }
+    .long_title {display: none; }
+
     input, select {
         font-size: [% css_fonts.size_big %];
     }
@@ -1719,6 +1751,10 @@ a.preflib_change {
     #header {
         padding: 0px;
         margin: 0px;
+    }
+    #header.col-full {
+	height: 75px;
+	width: 420px;
     }
     #homesearch_main_logo img {
         width:75%;
@@ -1734,7 +1770,7 @@ a.preflib_change {
         margin: 0px;
         padding: 5px;
     }
-    #login-form-box { width: 300px; }
+    #login-form-box { width: 350px; }
     .login-help-box { display: none; }
     #topnav_logo {
         margin: 0;
@@ -1779,6 +1815,8 @@ a.preflib_change {
     #dashboard {
         display: none;
     }
+    #acct_holds_main_header { width: 450px; }
+    #myopac_holds_div { width: 400px;}
     #holds_box form blockquote {
         margin-left: 10px;
         margin-right: 2px;
@@ -1817,11 +1855,11 @@ a.preflib_change {
         margin: 0px;
     }
     .result_table_pic {
-        width: 55px;
+        width: 60px;
         padding: 0px;
         margin: 0px;
     }
-    tr[name=results_isbn_tr], tr[name=results_phys_desc_tr], tr[name=results_pub_tr] strong, .result_count {
+    tr[name=results_isbn_tr], tr[name=results_phys_desc_tr], tr[name=results_pub_tr]  {
          display: none;
     }
     tr.result_table_title_cell[name=bib_cn_list] .result_holdings_table th:nth-child(4),
@@ -1860,9 +1898,11 @@ a.preflib_change {
     select#pickup_lib.search-wrapper-locg {
         width: 100%;
     }
-    #search-wrapper #search-box {
-        width: 85%;
-        padding-top: 5px;
+    #search-box {
+	width: 500px;
+    }
+    #search-wrapper {
+	width: 500px;
     }
     #main-content-home {
         padding: 0px;
@@ -1927,7 +1967,6 @@ a.preflib_change {
     .dash_account_buttons {
         display: block;
     } 
-    .searchbar { line-height: 1.5em; }
     #browse-controls { line-height: 1.5em; }
     #search_query_label, #search_qtype_label, #search_itype_label, #search_locg_label {
         display: block;
