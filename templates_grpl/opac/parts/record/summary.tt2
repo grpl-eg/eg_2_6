@@ -7,6 +7,24 @@
 
 <hr />
 
+[%- bookKit = 0 %]
+[%- eReader = 0 %]
+[%- eBook = 0 %]
+[%- PERL %]
+        my $title = $stash->get('attrs.title_extended');
+        if ( ($title =~ /Book\sDiscussion\sKit/) || ($title =~ /Book\sClub/) ){
+            $stash->set('bookKit',1);
+        }
+        if  ($title =~ /Nook\seReader\s/) {
+            $stash->set('eReader',1);
+        }
+        my $uris = $stash->get('merged_uris');
+        if (($title =~ /\[ebook|\[electronic/) && $uris ){
+            $stash->set('eBook',1);
+        }
+[%- END %]
+
+
 [%-# This holds the record summary information %]
 <div id="rdetail_summary_header">
     <div id='rdetail_title_div'>
@@ -43,6 +61,7 @@
             [%- search_ou = ctx.search_ou;
                 IF ctx.place_unfillable ||
                     ( attrs.marc_xml.findnodes('//*[local-name()="holdings" and @has_holdable="true"]').size > 0
+			&& !bookKit
                         && (ctx.holds_block.enabled != 'true' || attrs.org_copy_counts.$search_ou.available == 0)
                     )
              %]
@@ -116,7 +135,7 @@ IF num_uris > 0;
         [%- ELSE -%]
             <li class="rdetail_uri" property="offers" vocab="http://schema.org/" typeof="Offer">
         [%- END -%]
-        <a href="[% uri.href %]">[% uri.link %]</a>[% ' - ' _ uri.note IF uri.note %]
+        <a href="[% uri.href %]" target=_blank>[% uri.link %]</a>[% ' - ' _ uri.note IF uri.note %]
         <link property="availability" href="http://schema.org/OnlineOnly" />
         [%- IF attrs.gtin13; '<meta property="gtin13" content="' _ attrs.gtin13 _ '" />'; END; %]
         [%- IF num_uris == 1 %]</p>[% ELSE %]</li>[% END %]
