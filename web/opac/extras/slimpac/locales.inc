@@ -3,7 +3,6 @@
   <option value='cs-CZ'>Czech</option>
   <option value='en-CA'>English (Canada)</option>
   <option value='en-US'>English (US)</option>
-  <option value='fi-FI'>Finnish</option>
   <option value='fr-CA'>French (Canada)</option>
   <option value='ru-RU'>Russian</option>
 </select>

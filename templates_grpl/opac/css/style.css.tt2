@@ -366,6 +366,11 @@ for now until a better color is picked - if needed.
      display: none;
 }
 
+#rdetail_title {
+    font-weight: bold;
+    color: #06357a;
+}
+
 .rdetail_header {
     padding: 5px 7px 6px 0px;
     margin-left: 1em;
@@ -717,6 +722,10 @@ collapse correctly when the window width decreases */
 
 #result_table_table table {
   margin-top:5px;
+}
+
+.result_table_pic {
+   width: 60px;
 }
 
 #result_table_div {

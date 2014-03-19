@@ -297,7 +297,7 @@ for now until a better color is picked - if needed.
 .adv_filter_block {
     padding: 15px;
     float: left;
-    /*clear: both;*/
+    clear: both;
 }
 .adv_filter_block_item {
     float: left;
@@ -1201,6 +1201,19 @@ a.dash-link:hover { text-decoration: underline !important; }
 #hold-items-list td { padding: 5px; margin-bottom: 20px; }
 .hold-items-list-title { font-size: [% css_fonts.size_bigger %]; }
 .hold-items-list-problem { color: [% css_colors.text_alert %]; }
+
+.mr_holds_no_formats { 
+  padding: 5px;
+  margin-left: 25px;
+  font-size: 110%;
+  font-weight: bold;
+  color: [% css_colors.text_invert %]; 
+  background: [% css_colors.primary %];
+}
+ 
+.holds_item_row_separator td {
+  border-top: 2px dashed [% css_colors.accent_medium %];
+}
 
 .big-strong {font-weight: bold; font-size: [% css_fonts.size_bigger %]; }
 
