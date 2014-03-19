@@ -151,20 +151,14 @@ IF num_uris > 0;
     <span id="rdetail_hold_counts">
         <h2>[% l('Current holds') %]</h2>
         <p>
-            [% 
-                # If org hiding is enabled/relevant, only show 
-                # counts for copies within the hiding scope.
-                count_entry = 0;
-                FOR count_chunk IN ctx.copy_summary;
-                    IF ctx.org_within_hiding_scope(count_chunk.org_unit);
-                        # always true when hiding is disabled
-                        LAST;
-                    END;
-                    count_entry = count_entry + 1;
-                END;
-                l("[quant,_1,current hold,current holds] with [quant,_2,total copy,total copies].", 
-                    ctx.record_hold_count, ctx.copy_summary.$count_entry.count) 
-            %]
+            [%- IF bookKit %]
+                If you would like to request available<br/>book club copies, please call 988-5400.
+            [%- ELSIF eReader %]
+                eReader (NOOK) must be checked out from and returned to GRPL Reference Desk.
+            [%- ELSE %]
+                [%- l("[quant,_1,current hold,current holds] with [quant,_2,total copy,total copies].",
+                        ctx.record_hold_count, ctx.copy_summary.0.count) %]
+            [%- END %]
         </p>
     </span>
 [%- INCLUDE "opac/parts/record/copy_table.tt2" copies=ctx.copies %]
