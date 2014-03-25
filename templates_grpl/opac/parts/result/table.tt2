@@ -64,7 +64,7 @@
                                                 %].</td>
 
                                             <td id='book_jacket' class='result_table_pic_header'>
-                                                <a href="[% record_url %]"><img alt="[% l('Image of item') %]"
+                                                <a href="[% mkurl(ctx.opac_root _ '/record/' _ rec.id) %]"><img alt="[% l('Image of item') %]"
                                                         name='item_jacket' class='result_table_pic' 
                                                         src='[% ctx.media_prefix %]/opac/extras/ac/jacket/small/r/[% rec.bre_id | uri %]' /></a><br />
                                             </td>
@@ -204,6 +204,16 @@
                                                                 </td>
                                                             </tr>
                                                         [% END %]
+<div id=mobile_format_icon class='mobile_title'>
+                                                    [%- IF attrs.format_label; %]
+                                                        [% FOR format IN attrs.all_formats %]
+                                                            <img title="[% format.label | html %]"
+                                                                alt="[% format.label | html %]"
+                                                                src="[% format.icon %]" />
+                                                            [% format.label | html %]
+                                                        [% END %]
+                                                    [%- END %]
+</div>
 [% IF attrs.copy_counts.0.count == 0 %]
 </table>
 [% END %]
@@ -215,8 +225,10 @@
                                                        		 END;       
 							      END;
 							    %]
-					    </td>
-					</tr></table>	
+
+                                            </td>
+                                        </tr></table>
+
 [% PROCESS "opac/parts/result/copy_counts.tt2" %]
 </td>
 <td id='result_table_utils'>

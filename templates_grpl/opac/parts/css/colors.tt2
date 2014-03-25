@@ -21,7 +21,7 @@
         accent_lighter2 = "#d8d8d8", #  grey (lighter again)
         accent_lightest = "#eee", #  grey (lightest)
         accent_ultralight = "#f0f0f0", # ivory
-        accent_medium = "#999", # gun metal grey (medium)
+        accent_medium = "#bbb", # gun metal grey (medium)
         accent_mediumdark = "#888", # gun metal grey (medium dark)
         accent_dark = "#666", # gun metal grey (dark)
         accent_darker = "#333", # gun metal grey (darker)

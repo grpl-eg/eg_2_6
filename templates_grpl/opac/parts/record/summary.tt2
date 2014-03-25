@@ -27,8 +27,16 @@
 
 [%-# This holds the record summary information %]
 <div id="rdetail_summary_header">
+
+    <div id="rdetail_image_div">
+        <a href='[% ctx.media_prefix %]/opac/extras/ac/jacket/large/r/[% ctx.bre_id | uri %]'><img
+            alt="[% l('Image of item') %]" id='rdetail_image'
+            src='[% ctx.media_prefix %]/opac/extras/ac/jacket/small/r/[% ctx.bre_id | uri %]' /></a>
+    </div>
+
     <div id='rdetail_title_div'>
-        <h1 id='rdetail_title' property="name">[% attrs.title_extended | html %]</h1>
+        <h1 id='rdetail_title' class='long_title' property="name">[% attrs.title_extended | html %]</h1>
+        <h1 id='rdetail_title' class='mobile_title' property="name">[% attrs.title | html %]</h1>
         [%-
             FOR link880 IN attrs.graphic_titles;
                 FOR alt IN link880.graphic;
@@ -41,13 +49,7 @@
             END;
         -%]
         [%- INCLUDE "opac/parts/record/authors.tt2" %]
-    </div>
-    <div id="rdetail_image_div">
-        <a href='[% ctx.media_prefix %]/opac/extras/ac/jacket/large/r/[% ctx.bre_id | uri %]'><img
-            alt="[% l('Image of item') %]" id='rdetail_image'
-            src='[% ctx.media_prefix %]/opac/extras/ac/jacket/[% record.summary.jacket_size %]/r/[% ctx.bre_id | uri %]' /></a>
-        <br />
-    </div>
+    <!--</div> -->
     <div id="format_actions">
         [%- IF attrs.format_label %]
           [% FOR format IN attrs.all_formats %]
@@ -96,6 +98,7 @@
                 [%- INCLUDE 'opac/parts/record/refworks.tt2' %]
             [%- END %]
         </div>
+	</div>
     </div>
 </div>
 
@@ -150,7 +153,7 @@ IF num_uris > 0;
 [%- INCLUDE "opac/parts/record/copy_counts.tt2" %]
     <span id="rdetail_hold_counts">
         <h2>[% l('Current holds') %]</h2>
-        <p>
+        <ul>
             [%- IF bookKit %]
                 If you would like to request available<br/>book club copies, please call 988-5400.
             [%- ELSIF eReader %]
@@ -159,10 +162,10 @@ IF num_uris > 0;
                 [%- l("[quant,_1,current hold,current holds] with [quant,_2,total copy,total copies].",
                         ctx.record_hold_count, ctx.copy_summary.0.count) %]
             [%- END %]
-        </p>
+        </ul>
     </span>
-[%- INCLUDE "opac/parts/record/copy_table.tt2" copies=ctx.copies %]
 </div>
+[%- INCLUDE "opac/parts/record/copy_table.tt2" copies=ctx.copies %]
 [%- END %]
 
 <h2 id='rdetail_record_details'>[% l("Record details") %]</h2>

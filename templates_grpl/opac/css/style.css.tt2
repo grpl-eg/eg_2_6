@@ -425,6 +425,7 @@ div.rdetail_show_copies {
 div#rdetail_actions_div {
     float: right;
     background: [% css_colors.background %];
+    padding-left: 15px;
 }
 
 span#rdetail_copy_counts {
@@ -465,6 +466,11 @@ div.toggle_list { padding-top: 6px; }
 div.format_icon {
     float: right;
     margin-right: 17px;
+}
+
+#format_actions {
+    float: right;
+    margin-top: -60px;
 }
 
 .result_util {
@@ -726,6 +732,7 @@ collapse correctly when the window width decreases */
 
 .result_table_pic {
    width: 60px;
+   height: 90px;
 }
 
 #result_table_div {
@@ -1745,11 +1752,14 @@ a.preflib_change {
     }
     .mobile_hide { display: none; }
     #footer { width: 420px; }
-    #result_table_utils { position: absolute; margin-top: 84px; }
     .result_aux { display: inline; padding: 5px; margin-left: 20px; }
     
     .mobile_title { display: block; }
     .long_title {display: none; }
+
+    select#qtype {
+	margin-left: 20px;
+    }
 
     input, select {
         font-size: [% css_fonts.size_big %];
@@ -1865,6 +1875,7 @@ a.preflib_change {
     }
     .result_table_pic {
         width: 60px;
+	height: 90px;
         padding: 0px;
         margin: 0px;
     }
@@ -1907,11 +1918,10 @@ a.preflib_change {
     select#pickup_lib.search-wrapper-locg {
         width: 100%;
     }
-    #search-box {
+    #search-wrapper #search-box{
 	width: 500px;
-    }
-    #search-wrapper {
-	width: 500px;
+	text-align: left;
+	margin-left: -150px;
     }
     #main-content-home {
         padding: 0px;
@@ -1938,6 +1948,8 @@ a.preflib_change {
     }
     #format_actions {
         float: left;
+	margin-top: 55px;
+	margin-left: -70px;
     }
     .rdetail_aux_utils {
         padding: 0px;
