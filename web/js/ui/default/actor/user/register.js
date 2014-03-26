@@ -265,6 +265,7 @@ function load() {
     // GRPL custom connect function calls
     dojo.connect(genISM, 'onClick', replaceISMCard);
     dojo.connect(clearAlert, 'onClick', clearMessage);
+    dojo.connect(asAdult, 'onClick', RegAsAdult);
 
     if(patron.isnew()) {
         dojo.addClass(dojo.byId('uedit-all-barcodes'), 'hidden');
@@ -325,6 +326,12 @@ function clearMessage(){
     var input = findWidget('au', 'alert_message');
     input.widget.attr('disabled', false).attr('readOnly', false).attr('value', null).focus();
 }
+
+function RegAsAdult(){
+    var input = findWidget('au', 'ident_value2');
+    input.widget.attr('value', 'REGISTERED AS ADULT').focus();
+}
+
 
 var permGroups;
 var noPermGroups = [];
