@@ -1522,10 +1522,39 @@ function attachWidgetEvents(fmcls, fmfield, widget) {
                 );
                 return;
 
-            case 'first_given_name':
+	    case 'first_given_name':
+                dojo.connect(widget.widget, 'onChange',
+                    function(newVal) {
+                        uEditDupeSearch('name', newVal);
+                        //GRPL name formatting
+                        var fname = findWidget('au', 'first_given_name');
+                        newVal = newVal.toUpperCase();
+                        fname.widget.attr('value',newVal);
+                   }
+                );
+                return;
+
+            case 'second_given_name':
+                dojo.connect(widget.widget, 'onChange',
+                    function(newVal) {
+                        //GRPL name formatting
+                        var fname = findWidget('au', 'second_given_name');
+                        newVal = newVal.toUpperCase();
+                        fname.widget.attr('value',newVal);
+                    }
+                );
+                return;
+
             case 'family_name':
                 dojo.connect(widget.widget, 'onChange',
-                    function(newVal) { uEditDupeSearch('name', newVal); });
+                    function(newVal) {
+                        uEditDupeSearch('name', newVal);
+                        //GRPL name formatting
+                        var fname = findWidget('au', 'family_name');
+                        newVal = newVal.toUpperCase();
+                        fname.widget.attr('value',newVal);
+                    }
+                );
                 return;
 
             case 'email':
@@ -1589,9 +1618,10 @@ function attachWidgetEvents(fmcls, fmfield, widget) {
     }
 
     if(fmclass = 'aua') {
-
+	switch(fmfield) {
         // map post code to city, state, and county
-        if (fmfield == 'post_code') {
+        //if (fmfield == 'post_code') {
+	    case 'post_code':
             dojo.connect(widget.widget, 'onChange',
                 function(e) { 
                     fieldmapper.standardRequest(
@@ -1611,6 +1641,75 @@ function attachWidgetEvents(fmcls, fmfield, widget) {
                     );
                 }
             );
+
+            return;
+
+            case 'street1':
+                dojo.connect(widget.widget, 'onChange',
+                    function(e) {
+                        //GRPL address formatting
+                        e = e.toUpperCase();
+                        e = e.replace(/\.|\,|\#/g,"");
+                        e = e.replace(/\s+/g," ");
+                        var street1 = findWidget('aua', 'street1');
+                        street1.widget.attr('value',e);
+                        checkForShelter(e);
+                    }
+                );
+                return;
+
+            case 'street2':
+                dojo.connect(widget.widget, 'onChange',
+                    function(e) {
+                        //GRPL address formatting
+                        e = e.toUpperCase();
+                        e = e.replace(/\.|\,|\#/g,"");
+                        e = e.replace(/\s+/g," ");
+                        var street2 = findWidget('aua', 'street2');
+                        street2.widget.attr('value',e);
+                    }
+                );
+                return;
+            case 'city':
+                dojo.connect(widget.widget, 'onChange',
+                    function(e) {
+                        var callback = function(w) { return w._addr == widget._addr; };
+                        var args = {
+                            street1 : findWidget('aua', 'street1', callback).widget.attr('value'),
+                            street2 : findWidget('aua', 'street2', callback).widget.attr('value'),
+                            city : findWidget('aua', 'city', callback).widget.attr('value'),
+                            post_code : findWidget('aua', 'post_code', callback).widget.attr('value')
+                        };
+                        if(args.street1 && args.city && args.post_code)
+                            uEditDupeSearch('address', args);
+                        //GRPL address formatting
+                        var city = findWidget('aua', 'city');
+                        e = e.toUpperCase();
+                        city.widget.attr('value',e);
+                    }
+                );
+                return;
+
+            case 'state':
+                dojo.connect(widget.widget, 'onChange',
+                    function(e) {
+                        var callback = function(w) { return w._addr == widget._addr; };
+                        var args = {
+                            street1 : findWidget('aua', 'street1', callback).widget.attr('value'),
+                            street2 : findWidget('aua', 'street2', callback).widget.attr('value'),
+                            state : findWidget('aua', 'state', callback).widget.attr('value'),
+                            post_code : findWidget('aua', 'post_code', callback).widget.attr('value')
+                        };
+                        if(args.street1 && args.state && args.post_code)
+                            uEditDupeSearch('address', args);
+                        //GRPL address formatting
+                        var state = findWidget('aua', 'state');
+                        e = e.toUpperCase();
+                        state.widget.attr('value',e);
+                    }
+                );
+                return;
+
         }
 
         // duplicate address search
@@ -2334,5 +2433,12 @@ function printable_output() {
     s += '=-=-=-=\r\n';
     return s;
 }
+
+function checkForShelter(str) {
+        var shelterAddresses = /^117 CARRIER|^1165 HERMITAGE|^25 SHELDON|^72 SHELDON|^40 JEFFERSON|^110 HALL|^144 DIVISION|^144 S DIVISION|^200 EASTERN|^220 EASTERN|^225 COMMERCE|^255 DIVISION|^255 S DIVISION|^322 FRONT|^343 DIVISION|^343 S DIVISION|^523 LYON|^324 LYON|^701 PROSPECT|^710 FULTON|^710 W FULTON|^750 CHERRY|^761 BRIDGE|^766 7TH|^766 SEVENTH|^801 COLLEGE|^822 CHERRY|^901 EASTERN|^904 SHELDON|^906 DIVISION|^906 S DIVISION|^920 CHERRY|^938 HUMBOLT|^1024 IONIA|^1025 LAFAYETTE|^1215 FULTON|^1215 E FULTON|^1491 DIVISION|^2355 KNAPP|^2440 RICHMOND|^54 DIVISION|^54 S DIVISION|^1706 DIVISION|^1706 S DIVISION/i;
+        if (str.match(shelterAddresses))
+                alert('Is this patron a candidate for a Temporary Residence Card?');
+}
+
 
 openils.Util.addOnLoad(load);
