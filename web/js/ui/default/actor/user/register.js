@@ -264,6 +264,7 @@ function load() {
     dojo.connect(allCards, 'onClick', drawAllCards);
     // GRPL custom connect function calls
     dojo.connect(genISM, 'onClick', replaceISMCard);
+    dojo.connect(clearAlert, 'onClick', clearMessage);
 
     if(patron.isnew()) {
         dojo.addClass(dojo.byId('uedit-all-barcodes'), 'hidden');
@@ -318,6 +319,11 @@ function load() {
     });
 
     lock_ready = true;
+}
+
+function clearMessage(){
+    var input = findWidget('au', 'alert_message');
+    input.widget.attr('disabled', false).attr('readOnly', false).attr('value', null).focus();
 }
 
 var permGroups;
