@@ -262,6 +262,9 @@ function load() {
 
     dojo.connect(replaceBarcode, 'onClick', replaceCardHandler);
     dojo.connect(allCards, 'onClick', drawAllCards);
+    // GRPL custom connect function calls
+    dojo.connect(genISM, 'onClick', replaceISMCard);
+
     if(patron.isnew()) {
         dojo.addClass(dojo.byId('uedit-all-barcodes'), 'hidden');
     } else if(checkGrpAppPerm(patron.profile())) {
@@ -484,6 +487,35 @@ function replaceCardHandler() {
         t.push(newc);
         patron.cards(t);
 }
+
+function replaceISMCard(){
+    var input = findWidget('ac', 'barcode');
+    var rnd = Math.floor(Math.random()*999999);
+    rnd = '555'+rnd;
+    input.widget.attr('disabled', false).attr('readOnly', true).attr('value', rnd).focus();
+    genISM.attr('disabled', true);
+
+    var profile = findWidget('au', 'profile');
+    profile.widget.attr('value',71);
+
+if (!patron.isnew()){
+    var old = patron.cards().filter(function(c){return (c.id() == patron.card().id())})[0];
+    old.active('f');
+    old.ischanged(1);
+
+    var newc = new fieldmapper.ac();
+    newc.id(uEditCardVirtId--);
+    newc.isnew(1);
+    newc.active('t');
+    patron.card(newc);
+    editCard = newc;
+    var t = patron.cards();
+        if (!t) { t = []; }
+        t.push(newc);
+        patron.cards(t);
+}
+}
+
 
 /**
  * Generate a random password for the patron.
