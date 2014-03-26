@@ -36,7 +36,9 @@
         [%#Each content page needs (at minimum) an <h2> describing the content%]
         [% content %] 
         <h2 class="sr-only">[% l('Additional Resources') %]</h2>
-        [% INCLUDE 'opac/parts/footer.tt2' %]
+        [%- IF NOT ctx.is_staff %]
+           [% INCLUDE 'opac/parts/footer.tt2' %]
+        [%- END %]
         [% INCLUDE 'opac/parts/js.tt2' %]
         [%- IF ENV.OILS_CHILIFRESH_ACCOUNT %]
             [%- INCLUDE 'opac/parts/chilifresh.tt2' %]
