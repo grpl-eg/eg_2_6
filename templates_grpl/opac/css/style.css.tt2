@@ -265,12 +265,11 @@ for now until a better color is picked - if needed.
     padding-bottom: 10px;
 }
 
-#adv_search_tabs, #acct_tabs, #acct_fines_tabs, #acct_checked_tabs, #acct_holds_tabs, #acct_prefs_tabs, #results_header_inner{
+#adv_search_tabs, #acct_tabs, #acct_fines_tabs, #acct_checked_tabs, #acct_holds_tabs, #acct_prefs_tabs, #results_header_inner, #acct_request_tabs{
     overflow: auto;
-    background: #bbb;
 }
 
-#adv_search_tabs a, #acct_tabs a, #acct_fines_tabs a, #acct_checked_tabs a, #acct_holds_tabs a, #acct_prefs_tabs a {
+#adv_search_tabs a, #acct_tabs a, #acct_fines_tabs a, #acct_checked_tabs a, #acct_holds_tabs a, #acct_prefs_tabs a, #acct_request_tabs a {
     float: left;
     text-align: center;
     vertical-align: middle;
@@ -284,13 +283,14 @@ for now until a better color is picked - if needed.
     background: [% css_colors.control %];
     font-weight: bold;
     text-decoration: none;
+    padding: 2px;
 }
 
 #adv_search_tabs a, #acct_tabs a, #acct_fines_tabs a {
     padding: 1em 1em 0.5em;
 }
 
-#adv_search_tabs a:hover, #acct_tabs a:hover, #acct_fines_tabs a:hover, #acct_checked_tabs a:hover, #acct_holds_tabs a:hover, #acct_prefs_tabs a:hover {
+#adv_search_tabs a:hover, #acct_tabs a:hover, #acct_fines_tabs a:hover, #acct_checked_tabs a:hover, #acct_holds_tabs a:hover, #acct_prefs_tabs a:hover, #acct_request_tabs a:hover {
     background: [% css_colors.primary %]; 
     color: [% css_colors.text_invert %];
     text-decoration: none;
@@ -345,19 +345,19 @@ for now until a better color is picked - if needed.
     background: [% css_colors.control %];
 }
 
-#acct_checked_tabs a, #acct_holds_tabs a, #acct_prefs_tabs a {
+#acct_checked_tabs a, #acct_holds_tabs a, #acct_prefs_tabs a, #acct_request_tabs a {
     margin-top: 0px;
     font-size: [% css_fonts.size_smaller %];
     color: [% css_colors.accent_darker %];
     padding: 10px 10px 10px 10px;
 }
 
-#acct_checked_tabs div.selected a, #acct_holds_tabs div.selected a, #acct_prefs_tabs div.selected a {
+#acct_checked_tabs div.selected a, #acct_holds_tabs div.selected a, #acct_prefs_tabs div.selected a, #acct_request_tabs div.selected a {
     background: [% css_colors.accent_lightest %];
     color: [% css_colors.accent_darker %];
 }
 
-#acct_checked_tabs, #acct_holds_tabs, #acct_prefs_tabs {
+#acct_checked_tabs, #acct_holds_tabs, #acct_prefs_tabs,  #acct_request_tabs {
     padding-bottom: 12px;
     color: [% css_colors.accent_medium %];
 }
