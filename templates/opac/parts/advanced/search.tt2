@@ -50,6 +50,9 @@
     in_row = 0;
     FOR adv_chunk IN search.adv_config;
         NEXT IF adv_chunk.adv_hide;
+        NEXT IF adv_chunk.adv_attr == 'bib_level';
+        NEXT IF adv_chunk.adv_attr == 'vr_format';
+
         IF in_row == 0;
             in_row = 1; %]
             <div class='adv_filter_block'>
