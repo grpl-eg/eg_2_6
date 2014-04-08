@@ -189,6 +189,8 @@ sub load {
     return $self->load_myopac_pay_init if $path =~ m|opac/myopac/main_pay_init|;
     return $self->load_myopac_pay if $path =~ m|opac/myopac/main_pay|;
     return $self->load_myopac_main if $path =~ m|opac/myopac/main|;
+    return $self->load_myopac_purchase_request_form if $path =~ m|opac/myopac/purchase_request_form|;
+    return $self->load_myopac_purchase_request if $path =~ m|opac/myopac/purchase_request|;
     return $self->load_myopac_receipt_email if $path =~ m|opac/myopac/receipt_email|;
     return $self->load_myopac_receipt_print if $path =~ m|opac/myopac/receipt_print|;
     return $self->load_myopac_update_email if $path =~ m|opac/myopac/update_email|;
