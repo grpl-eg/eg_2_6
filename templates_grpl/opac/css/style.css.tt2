@@ -366,6 +366,10 @@ for now until a better color is picked - if needed.
      display: none;
 }
 
+.long_title {
+     width: 650px;
+}
+
 #rdetail_title {
     font-weight: bold;
     color: #06357a;
