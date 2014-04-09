@@ -366,7 +366,7 @@ for now until a better color is picked - if needed.
      display: none;
 }
 
-.long_title {
+.record_long_title {
      width: 650px;
 }
 
@@ -1760,6 +1760,7 @@ a.preflib_change {
     
     .mobile_title { display: block; }
     .long_title {display: none; }
+    .record_long_title {display: none; }
 
     select#qtype {
 	margin-left: 20px;

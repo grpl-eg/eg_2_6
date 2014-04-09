@@ -35,7 +35,7 @@
     </div>
 
     <div id='rdetail_title_div'>
-        <h1 id='rdetail_title' class='long_title' property="name">[% attrs.title_extended | html %]</h1>
+        <h1 id='rdetail_title' class='record_long_title' property="name">[% attrs.title_extended | html %]</h1>
         <h1 id='rdetail_title' class='mobile_title' property="name">[% attrs.title | html %]</h1>
         [%-
             FOR link880 IN attrs.graphic_titles;
