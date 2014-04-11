@@ -1033,6 +1033,11 @@ sub attempt_hold_placement {
         }
     }
 
+    # apply suspend if requested at hold placement time
+    if ($cgi->param('hold_suspend')){
+        $ctx->{frozen} = 't';
+    }
+
     my $method = 'open-ils.circ.holds.test_and_create.batch';
 
     if ($cgi->param('override')) {
@@ -1064,7 +1069,8 @@ sub attempt_hold_placement {
                 patronid => $usr,
                 pickup_lib => $pickup_lib, 
                 hold_type => $hold_type,
-                holdable_formats_map => $holdable_formats
+                holdable_formats_map => $holdable_formats,
+		frozen => $ctx->{frozen}
             }),
             \@create_targets
         );
