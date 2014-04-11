@@ -45,6 +45,9 @@
                     [% l("Place this hold for me ([_1] [_2])", ctx.user.first_given_name, ctx.user.family_name) | html %]
                 </label>
             </span>
+		<br><input type="checkbox" name="hold_suspend"
+                    />
+                    [% l('Suspend This Hold?') %]<br/>
         </p>
         [% END %]
 
