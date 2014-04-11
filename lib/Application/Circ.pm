@@ -754,9 +754,9 @@ sub circ_count {
 
 
 __PACKAGE__->register_method(
-    method      => 'fetch_notes',
+    method      => "fetch_notes",
     authoritative   => 1,
-    api_name        => 'open-ils.circ.copy_note.retrieve.all',
+    api_name        => "open-ils.circ.copy_note.retrieve.all",
     signature   => q/
         Returns an array of copy note objects.  
         @param args A named hash of parameters including:
@@ -767,13 +767,13 @@ __PACKAGE__->register_method(
     /);
 
 __PACKAGE__->register_method(
-    method      => 'fetch_notes',
-    api_name        => 'open-ils.circ.call_number_note.retrieve.all',
+    method      => "fetch_notes",
+    api_name        => "open-ils.circ.call_number_note.retrieve.all",
     signature   => q/@see open-ils.circ.copy_note.retrieve.all/);
 
 __PACKAGE__->register_method(
-    method      => 'fetch_notes',
-    api_name        => 'open-ils.circ.title_note.retrieve.all',
+    method      => "fetch_notes",
+    api_name        => "open-ils.circ.title_note.retrieve.all",
     signature   => q/@see open-ils.circ.copy_note.retrieve.all/);
 
 
@@ -1206,6 +1206,15 @@ sub handle_mark_damaged {
     my $new_btype = $args->{override_btype};
     my $new_note = $args->{override_note};
 
+       # End transit, even though we may not be at the dest
+        my $transit = $e->search_action_transit_copy(
+        { target_copy => $copy->id, dest_recv_time => undef } )->[0];
+        if ($transit) {
+                $transit->dest_recv_time('now');
+                $e->update_action_transit_copy($transit);
+        }
+
+
     # grab the last circulation
     my $circ = $e->search_action_circulation([
         {   target_copy => $copy->id}, 
@@ -1275,15 +1284,6 @@ sub handle_mark_damaged {
 
         my $evt2 = OpenILS::Utils::Penalty->calculate_penalties($e, $circ->usr->id, $e->requestor->ws_ou);
         return $evt2 if $evt2;
-
-## Kludge to get us our damaged circ id in a event_output
-        my $force_fire = OpenILS::Event->new('SUCCESS',
-            payload => {
-                circ => $circ,
-                copy => $copy,
-                letter => $U->fire_object_event(103, 'checkout.damaged', $circ, $circ->circ_lib)
-            }
-        );
 
         return undef;
 
