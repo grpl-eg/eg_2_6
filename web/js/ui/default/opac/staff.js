@@ -17,6 +17,7 @@ function runEvt(scope, name) {
 function staff_hold_usr_input_disabler(input) {
     document.getElementById("hold_usr_input").disabled =
         Boolean(Number(input.value));
+    document.getElementById('staff_privacy').style.visibility='visible';
     staff_hold_usr_barcode_changed();
 }
 function no_hold_submit(event) {

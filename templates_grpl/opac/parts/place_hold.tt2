@@ -131,7 +131,13 @@
                     value=ctx.default_pickup_lib id=org_select_id 
                     can_have_vols_only=1 hold_pickup_lib=1 %]
         </p>
+[% IF ctx.is_staff %]
+<div id='staff_privacy' style='visibility: hidden'>
+
         <p>
+[% ELSE %]
+<div id='staff_privacy'>
+[% END %]
             [% l('Notify when hold is ready for pickup?') %]
             <blockquote>
                 <input type="checkbox" id="email_notify" name="email_notify" value="t"
@@ -162,6 +168,7 @@
                 [% END %]
             </blockquote>
         </p>
+</div>
         <input id="place_hold_submit" type="submit" name="submit" 
             value="[% l('Submit') %]" title="[% l('Submit') %]"
             alt="[% l('Submit') %]" class="opac-button" />
