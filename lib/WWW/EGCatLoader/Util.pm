@@ -318,6 +318,16 @@ sub get_records_and_facets {
                 $logger->warn("Missing 901 subfield 'c' in " . $xml->toString());
             }
 
+            # GRPL hack for bib source in 901s
+            my $bre_source;
+            my $bre_source_nodes =  $xml->find('*[@tag="902"]/*[@code="s"]');
+            if ($bre_source_nodes) {
+                $bre_source =  $bre_source_nodes->[0]->textContent;
+            } else {
+                #$logger->warn("Missing 902 subfield 's' in " . $xml->toString());
+            }
+
+
             if ($is_meta) {
                 # extract metarecord ID from mmr.unapi tag
                 for my $node ($xml->getElementsByTagName('abbr')) {
@@ -333,7 +343,8 @@ sub get_records_and_facets {
                 id => $rec_id, 
                 bre_id => $bre_id, 
                 mmr_id => $mmr_id,
-                marc_xml => $xml
+                marc_xml => $xml,
+		source => $bre_source
             };
 
             if ($rec_id) {
