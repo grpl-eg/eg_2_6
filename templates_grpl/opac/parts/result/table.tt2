@@ -10,6 +10,9 @@
 
 %]
 
+[%# USE Dumper(Indent=2) %]
+[%# Dumper.dump_html(ctx) %]
+
 [% PROCESS "opac/parts/result/paginate.tt2" %] 
 [% ctx.results_count_header = PROCESS results_count_header;
     ctx.results_count_header %]
